@@ -32,7 +32,8 @@ RUN apt-get update && apt-get install -y \
     python3-subunit \
     mesa-common-dev \
     zstd \
-    liblz4-tool
+    liblz4-tool \
+    pkg-config
 
 RUN pip3 install kas
 

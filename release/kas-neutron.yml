@@ -4,7 +4,7 @@ header:
 machine: raspberrypi4
 distro: poky
 target:
-  - core-image-base
+  - neutron-image
 
 repos:
   meta-neutron:
@@ -52,7 +52,8 @@ local_conf_header:
     USER_CLASSES = "buildstats"
     PATCHRESOLVE = "noop"
   debug-tweaks: |
-    EXTRA_IMAGE_FEATURES += "allow-empty-password allow-root-login"
+    EXTRA_IMAGE_FEATURES = "allow-empty-password allow-root-login empty-root-password post-install-logging ssh-server-openssh"
+    ENABLE_UART = "1"
   diskmon: |
     BB_DISKMON_DIRS = "\
         STOPTASKS,${TMPDIR},1G,100K \
@@ -65,8 +66,6 @@ local_conf_header:
         HALT,/tmp,10M,1K"
   license: |
     LICENSE_FLAGS_ACCEPTED += " synaptics-killswitch"
-  ssh: |
-    EXTRA_IMAGE_FEATURES += "ssh-server-openssh"
   systemd: |
     INIT_MANAGER = "systemd"
     DISTRO_FEATURES:append = " systemd"
@@ -74,4 +73,6 @@ local_conf_header:
     VIRTUAL-RUNTIME_init_manager = "systemd"
     VIRTUAL-RUNTIME_initscripts = "systemd-compat-units"
     PREFERRED_PROVIDER_virtual/base-utils = "systemd"
+  wic: |
+    WKS_FILE = "sdimage-neutron.wks"
     

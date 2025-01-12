@@ -3,4 +3,4 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-sudo bmaptool copy release/raspberrypi-image.wic.bz2 $1
+sudo bmaptool copy release/build/neutron-image.wic.bz2 $1

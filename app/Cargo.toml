@@ -1,0 +1,9 @@
+[package]
+name = "neutron"
+version = "0.1.0"
+edition = "2021"
+repository = "LOCAL"
+
+[dependencies]
+anyhow = "1.0.95"
+cpal = "0.15.3"
